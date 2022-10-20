@@ -1,0 +1,63 @@
+Source: xserver-xorg-input-evdev
+Section: x11
+Priority: optional
+Maintainer: Debian X Strike Force <debian-x@lists.debian.org>
+Build-Depends:
+ debhelper-compat (= 12),
+ pkg-config,
+ quilt,
+ xserver-xorg-dev (>= 2:1.15.99),
+ x11proto-dev,
+ libxkbfile-dev,
+ xutils-dev (>= 1:7.5+4),
+ libudev-dev,
+ libmtdev-dev,
+ libevdev-dev (>= 1.2.2+dfsg-1~),
+Standards-Version: 4.5.0
+Homepage: https://www.x.org
+Vcs-Git: https://salsa.debian.org/xorg-team/driver/xserver-xorg-input-evdev.git
+Vcs-Browser: https://salsa.debian.org/xorg-team/driver/xserver-xorg-input-evdev
+
+Package: xserver-xorg-input-evdev
+Architecture: linux-any
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+ ${xinpdriver:Depends},
+Provides:
+ ${xinpdriver:Provides}
+Breaks: xserver-xorg-core (<< 2:1.18.0-1)
+Replaces: xserver-xorg-core (<< 2:1.18.0-1)
+Description: X.Org X server -- evdev input driver
+ This package provides the driver for input devices using evdev, the Linux
+ kernel's event delivery mechanism.  This driver allows for multiple keyboards
+ and mice to be treated as separate input devices.
+ .
+ This package is built from the X.org xf86-input-evdev driver module.
+
+Package: xserver-xorg-input-evdev-udeb
+Package-Type: udeb
+Section: debian-installer
+Architecture: linux-any
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+ ${xinpdriver:Depends},
+ udev-udeb,
+Provides:
+ ${xinpdriver:Provides}
+Description: X.Org X server -- evdev input driver
+ This is a udeb, or a microdeb, for the debian-installer.
+
+Package: xserver-xorg-input-evdev-dev
+Section: libdevel
+Architecture: all
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends}
+Description: X.Org X server -- evdev input driver (development headers)
+ This package provides the development headers for the evdev input driver
+ found in xserver-xorg-input-evdev. Non-developers likely have little use
+ for this package.
+ .
+ This package is built from the X.org xf86-input-evdev driver module.
